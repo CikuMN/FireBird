@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Storyteller. Strategist. Producer.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --mahogany:   #2C1810;
+    --sienna:     #C4763A;
+    --gold:       #E8B87A;
+    --parchment:  #F5EDD8;
+    --parchment2: #EDE0C4;
+    --ink:        #1A1A1A;
+    --ink-light:  #4A3728;
+    --white:      #FFFFFF;
+    --serif:      'Cormorant Garamond', Georgia, serif;
+    --sans:       'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--parchment);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ──────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(44, 24, 16, 0.96);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(232,184,122,0.75);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--sienna);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #D4863A !important; color: var(--white) !important; }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    background: var(--mahogany);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ember animation */
+  .ember-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .ember {
+    position: absolute;
+    bottom: -20px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    animation: rise var(--dur, 6s) var(--delay, 0s) ease-in infinite;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+    10%  { opacity: 0.9; }
+    70%  { opacity: 0.4; }
+    100% { transform: translateY(-100vh) translateX(var(--drift,20px)) scale(0.2); opacity: 0; }
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    margin-bottom: 24px;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--parchment);
+    margin-bottom: 32px;
+    max-width: 900px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(232,184,122,0.7);
+    max-width: 560px;
+    line-height: 1.5;
+    margin-bottom: 48px;
+  }
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 56px;
+  }
+  .pill {
+    border: 1px solid rgba(196,118,58,0.5);
+    color: rgba(232,184,122,0.85);
+    padding: 6px 16px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 100px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--sienna);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #D4863A; transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(196,118,58,0.6);
+    color: var(--gold);
+    padding: 14px 32px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--white); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(232,184,122,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(196,118,58,0.4);
+  }
+
+  /* ── SECTION COMMON ───────────────────────────────────── */
+  section { padding: 100px 80px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--mahogany);
+    margin-bottom: 48px;
+  }
+  .section-title em { font-style: italic; color: var(--sienna); }
+  .ruled {
+    border-bottom: 1px solid var(--sienna);
+    padding-bottom: 16px;
+    margin-bottom: 48px;
+  }
+
+  /* ── ABOUT ────────────────────────────────────────────── */
+  #about { background: var(--parchment); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+  }
+  .about-text .pull-quote {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sienna);
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin: 32px 0;
+    line-height: 1.5;
+  }
+  .credentials {
+    background: var(--mahogany);
+    padding: 40px;
+    border-radius: 4px;
+  }
+  .credentials h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(196,118,58,0.3);
+  }
+  .cred-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .cred-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cred-text strong {
+    display: block;
+    color: var(--parchment);
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .cred-text span {
+    color: rgba(232,184,122,0.6);
+    font-size: 0.78rem;
+  }
+  .awards-strip {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(196,118,58,0.3);
+  }
+  .awards-strip h4 {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    margin-bottom: 16px;
+  }
+  .award-badge {
+    background: rgba(196,118,58,0.15);
+    border: 1px solid rgba(196,118,58,0.3);
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .award-badge strong {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .award-badge span {
+    color: rgba(232,184,122,0.6);
+    font-size: 0.72rem;
+  }
+
+  /* ── PORTFOLIO ────────────────────────────────────────── */
+  #portfolio { background: var(--parchment2); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .port-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .port-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(44,24,16,0.15);
+  }
+  .port-thumb {
+    height: 200px;
+    background: var(--mahogany);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .port-thumb .play-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(232,184,122,0.7);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .port-card:hover .play-btn {
+    background: var(--sienna);
+    border-color: var(--sienna);
+    color: white;
+  }
+  .port-thumb-label {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--sienna);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .port-body { padding: 24px; }
+  .port-body h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--mahogany);
+    margin-bottom: 8px;
+  }
+  .port-body p {
+    font-size: 0.85rem;
+    color: #6B5744;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .port-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196,118,58,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .port-link:hover { border-color: var(--sienna); }
+
+  /* ── FIREBIRD SERVICES ────────────────────────────────── */
+  #services {
+    background: var(--mahogany);
+    position: relative;
+  }
+  #services .section-title { color: var(--parchment); }
+  #services .section-eyebrow { color: var(--gold); }
+  .firebird-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+  .firebird-logo-text {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .firebird-tagline-small {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(196,118,58,0.7);
+    padding-bottom: 8px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,118,58,0.15);
+    border: 1px solid rgba(196,118,58,0.15);
+  }
+  .service-cell {
+    background: rgba(44,24,16,0.8);
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .service-cell:hover { background: rgba(196,118,58,0.12); }
+  .service-icon { font-size: 1.5rem; margin-bottom: 16px; }
+  .service-cell h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .service-cell p {
+    font-size: 0.83rem;
+    color: rgba(232,184,122,0.65);
+    line-height: 1.65;
+  }
+  .services-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+  .services-cta p {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: rgba(232,184,122,0.7);
+    margin-bottom: 24px;
+  }
+
+  /* ── SPEAKING & TEACHING ──────────────────────────────── */
+  #speaking { background: var(--parchment); }
+  .speaking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  .speaking-card {
+    border-top: 3px solid var(--sienna);
+    padding-top: 28px;
+  }
+  .speaking-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--mahogany);
+    margin-bottom: 12px;
+  }
+  .speaking-card p {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .speaking-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    background: rgba(196,118,58,0.12);
+    color: var(--sienna);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(196,118,58,0.3);
+  }
+  .engagements {
+    background: var(--parchment2);
+    border-radius: 4px;
+    padding: 40px;
+  }
+  .engagements h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--mahogany);
+    margin-bottom: 24px;
+  }
+  .engagement-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .engagement-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-weight: 500;
+  }
+  .engagement-item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sienna);
+    flex-shrink: 0;
+  }
+
+  /* ── CREATIVE WORK ────────────────────────────────────── */
+  #creative { background: var(--parchment2); }
+  .creative-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .creative-card {
+    background: var(--parchment);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .creative-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--sienna);
+  }
+  .creative-card .creative-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .creative-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--mahogany);
+    margin-bottom: 12px;
+  }
+  .creative-card p {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .creative-status {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    background: rgba(196,118,58,0.1);
+    border: 1px solid rgba(196,118,58,0.25);
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  /* ── CONTACT ──────────────────────────────────────────── */
+  #contact {
+    background: var(--mahogany);
+    text-align: center;
+    padding: 120px 80px;
+  }
+  #contact .section-eyebrow { color: var(--sienna); }
+  #contact .section-title {
+    color: var(--parchment);
+    margin-bottom: 20px;
+  }
+  #contact .section-title em { color: var(--gold); }
+  .contact-sub {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(232,184,122,0.65);
+    margin-bottom: 56px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-channels {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+  .contact-channel h4 {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    margin-bottom: 8px;
+  }
+  .contact-channel a, .contact-channel p {
+    color: var(--gold);
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  .contact-channel a:hover { text-decoration: underline; }
+  .contact-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(196,118,58,0.3);
+    margin: 0 auto 40px;
+  }
+  .contact-faith {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(232,184,122,0.4);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    background: #1A0E08;
+    padding: 24px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(196,118,58,0.4);
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(232,184,122,0.35);
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    section { padding: 70px 32px; }
+    #hero { padding: 100px 32px 70px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .speaking-grid { grid-template-columns: 1fr; gap: 32px; }
+    .creative-grid { grid-template-columns: 1fr; }
+    .engagement-list { grid-template-columns: 1fr 1fr; }
+    .hero-scroll { left: 32px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .engagement-list { grid-template-columns: 1fr; }
+    .contact-channels { gap: 32px; }
+    #contact { padding: 80px 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ember { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">[Your Name]</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#services">Firebird</a></li>
+    <li><a href="#speaking">Speaking</a></li>
+    <li><a href="#creative">Creative</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="ember-field" id="embers"></div>
+  <div class="hero-eyebrow">Nairobi, Kenya &nbsp;·&nbsp; Available Globally</div>
+  <h1 class="hero-name">
+    [Your Name]<br>
+    <em>Storyteller.</em>
+  </h1>
+  <p class="hero-tagline">
+    Award-winning producer. Educator. Strategist. Pastoral heart.<br>
+    Over two decades of work that crosses continents, cameras, and classrooms.
+  </p>
+  <div class="hero-pills">
+    <span class="pill">Film & Television</span>
+    <span class="pill">Media Training</span>
+    <span class="pill">Curriculum Development</span>
+    <span class="pill">Public Speaking</span>
+    <span class="pill">Book Editing</span>
+    <span class="pill">Children's Theatre</span>
+    <span class="pill">Women in Sport</span>
+    <span class="pill">Faith & Community</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#portfolio" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-ghost">Work With Me</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow">About</div>
+    <h2 class="section-title ruled">The story <em>behind</em> the stories</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Some practitioners are good at one thing. A rare few are formed by many things — and carry all of them into every room they enter. I am a film and television producer, an award-winning lecturer, a curriculum architect, a book editor, a public speaker, a communications strategist, a pastor, and a tireless advocate for the next generation of women in sport.
+        </p>
+        <div class="pull-quote">
+          "The right story, told the right way, can change the course of a life, a campaign, or a nation."
+        </div>
+        <p>
+          My work has taken me from the broadcast trucks of FIFA World Cup Qualifiers to the storytelling workshops of Kakuma Refugee Camp. From the stage at TED Talks Nairobi to the lecture halls of the Africa Digital Media Institute. From shaping national TVET curriculum standards to editing the manuscripts of seven published books.
+        </p>
+        <p>
+          I am based in Nairobi and available globally — for long-term partnerships, short-term consultancies, speaking engagements, and everything in between. I bring to every engagement not just expertise, but a genuine conviction that what we make and how we communicate it matters deeply.
+        </p>
+        <p style="font-family: var(--serif); font-style: italic; color: var(--sienna); font-size: 1rem;">
+          Proverbs 22:29 — "Do you see someone skilled in their work? They will serve before kings."
+        </p>
+      </div>
+      <div>
+        <div class="credentials">
+          <h3>Selected Credentials</h3>
+          <div class="cred-item">
+            <span class="cred-icon">🎬</span>
+            <div class="cred-text">
+              <strong>Award-Winning Producer — Boda Love</strong>
+              <span>Film · Live Sports · Documentaries · Awards</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">🏟</span>
+            <div class="cred-text">
+              <strong>Broadcast Venue Manager</strong>
+              <span>FIFA World Cup Qualifiers — International</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">🎤</span>
+            <div class="cred-text">
+              <strong>TED Talks Nairobi</strong>
+              <span>Production & Facilitation</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">🎓</span>
+            <div class="cred-text">
+              <strong>Lecturer — Film & Television</strong>
+              <span>Africa Digital Media Institute</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">📋</span>
+            <div class="cred-text">
+              <strong>Curriculum Developer & Assessor</strong>
+              <span>TVET-CDACC — National Standards</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">📚</span>
+            <div class="cred-text">
+              <strong>Book Editor — 7 Published Titles</strong>
+              <span>Developmental & Substantive Editing</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">🌍</span>
+            <div class="cred-text">
+              <strong>FilmAid International — Kakuma</strong>
+              <span>Film production with refugee communities</span>
+            </div>
+          </div>
+          <div class="awards-strip">
+            <h4>🏆 Awards & Recognition</h4>
+            <div class="award-badge">
+              <strong>Students' Choice Award — Commitment to Learner Growth</strong>
+              <span>Africa Digital Media Institute · 2019 to present</span>
+            </div>
+            <div class="award-badge">
+              <strong>Excellence Award — Outstanding Student</strong>
+              <span>Fearless Institute Leadership Bootcamp · 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-eyebrow">Portfolio</div>
+    <h2 class="section-title ruled">Work that has <em>travelled</em></h2>
+    <div class="portfolio-grid">
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #2C1810 60%, #4A2818);">
+          <span class="port-thumb-label">Film</span>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="port-body">
+          <h3>Boda Love</h3>
+          <p>Award-winning narrative film. A story of love, hustle, and the city told through the world of Nairobi's boda boda riders.</p>
+          <a href="#" class="port-link">Add link → Watch</a>
+        </div>
+      </div>
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #1A3A1A 60%, #2A5A2A);">
+          <span class="port-thumb-label">Humanitarian</span>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="port-body">
+          <h3>FilmAid — Kakuma</h3>
+          <p>Film production workshops with refugee communities in Kakuma Camp. Storytelling as dignity, agency, and voice for the displaced.</p>
+          <a href="#" class="port-link">Add link → Learn More</a>
+        </div>
+      </div>
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #1A1A3A 60%, #2A2A5A);">
+          <span class="port-thumb-label">Live Sports</span>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="port-body">
+          <h3>FIFA World Cup Qualifiers</h3>
+          <p>Broadcast Venue Manager for international World Cup qualifier fixtures. End-to-end broadcast operations to FIFA standard.</p>
+          <a href="#" class="port-link">Add link → Details</a>
+        </div>
+      </div>
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #3A1A1A 60%, #5A2A2A);">
+          <span class="port-thumb-label">Live Event</span>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="port-body">
+          <h3>TED Talks Nairobi</h3>
+          <p>Production contribution to TEDx Nairobi — one of Africa's most significant stages for ideas, innovation, and thought leadership.</p>
+          <a href="#" class="port-link">Add link → Watch</a>
+        </div>
+      </div>
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #2C2010 60%, #4A3818);">
+          <span class="port-thumb-label">Documentary</span>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="port-body">
+          <h3>Documentary Work</h3>
+          <p>A body of documentary production spanning social issues, culture, sport, and community — across Kenya, East Africa, and beyond.</p>
+          <a href="#" class="port-link">Add link → View Reel</a>
+        </div>
+      </div>
+
+      <div class="port-card">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #1A2A3A 60%, #2A3A4A);">
+          <span class="port-thumb-label">Publishing</span>
+          <div class="play-btn">📚</div>
+        </div>
+        <div class="port-body">
+          <h3>7 Published Books</h3>
+          <p>Developmental and substantive editing across seven published titles — sharpening voice, structure, and narrative for authors across genres.</p>
+          <a href="#" class="port-link">Add link → Titles</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FIREBIRD SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow">Consultancy</div>
+    <div class="firebird-header">
+      <div class="firebird-logo-text">[Firebird Name]</div>
+      <div class="firebird-tagline-small">Message · Image · Impact</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-cell">
+        <div class="service-icon">🎙</div>
+        <h3>Media Training</h3>
+        <p>Camera confidence, press briefing preparation, live interview coaching. For leaders, candidates, and spokespeople who cannot afford to look unprepared.</p>
+      </div>
+      <div class="service-cell">
+        <div class="service-icon">✍️</div>
+        <h3>Speech Writing</h3>
+        <p>From campaign addresses to boardroom keynotes. Your authentic voice, elevated. Words that move people — not merely impress them.</p>
+      </div>
+      <div class="service-cell">
+        <div class="service-icon">👁</div>
+        <h3>Image & Optics</h3>
+        <p>Full visual and behavioural communications strategy. What you signal before you say a word is already part of your message.</p>
+      </div>
+      <div class="service-cell">
+        <div class="service-icon">⚡</div>
+        <h3>Crisis Communications</h3>
+        <p>When the story is running away from you. Rapid-response strategy from someone who has managed live productions under pressure, with no margin for error.</p>
+      </div>
+      <div class="service-cell">
+        <div class="service-icon">🗺</div>
+        <h3>Strategic Messaging</h3>
+        <p>Full narrative architecture — message frameworks, audience mapping, language strategy, and communications calendars for campaigns and organisations.</p>
+      </div>
+      <div class="service-cell">
+        <div class="service-icon">🏛</div>
+        <h3>Executive & Political Advisory</h3>
+        <p>For candidates, officeholders, and senior executives. Long-term advisory, debate prep, profile building. African context. Global standards.</p>
+      </div>
+    </div>
+    <div class="services-cta">
+      <p>"We help you say what is true in the most powerful way possible."</p>
+      <a href="#contact" class="btn-primary">Enquire About Firebird</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING & TEACHING -->
+<section id="speaking">
+  <div class="section-inner">
+    <div class="section-eyebrow">Speaking & Teaching</div>
+    <h2 class="section-title ruled">In the room and <em>at the front</em></h2>
+    <div class="speaking-grid">
+      <div class="speaking-card">
+        <h3>Public Speaking</h3>
+        <p>Available for keynotes, panel discussions, conference facilitation, and workshop delivery — on media, storytelling, gender equity, education, and leadership. Has spoken at TED Talks Nairobi and on stages across Kenya, Africa, and internationally.</p>
+        <div class="speaking-tags">
+          <span class="tag">Keynotes</span>
+          <span class="tag">Panel Facilitation</span>
+          <span class="tag">Workshops</span>
+          <span class="tag">Conferences</span>
+        </div>
+      </div>
+      <div class="speaking-card">
+        <h3>Lecturing & Training</h3>
+        <p>Award-winning lecturer of Film & Television at the Africa Digital Media Institute. Students' Choice Award recipient from 2019 to present. Available for guest lectures, media training intensives, curriculum-aligned sessions, and institutional capacity building programmes.</p>
+        <div class="speaking-tags">
+          <span class="tag">Film & TV</span>
+          <span class="tag">Media Literacy</span>
+          <span class="tag">Production</span>
+          <span class="tag">TVET</span>
+        </div>
+      </div>
+    </div>
+    <div class="engagements">
+      <h3>Notable Engagements & Organisations</h3>
+      <div class="engagement-list">
+        <div class="engagement-item">TED Talks Nairobi</div>
+        <div class="engagement-item">FIFA (World Cup Qualifiers)</div>
+        <div class="engagement-item">FilmAid International</div>
+        <div class="engagement-item">Africa Digital Media Institute</div>
+        <div class="engagement-item">TVET-CDACC Kenya</div>
+        <div class="engagement-item">Kakuma Refugee Camp</div>
+        <div class="engagement-item">Fearless Institute</div>
+        <div class="engagement-item">Girls' High School Ministry</div>
+        <div class="engagement-item">Women in Sport Advocacy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE WORK -->
+<section id="creative">
+  <div class="section-inner">
+    <div class="section-eyebrow">Creative Work</div>
+    <h2 class="section-title ruled">Stories still <em>becoming</em></h2>
+    <div class="creative-grid">
+      <div class="creative-card">
+        <div class="creative-icon">🎭</div>
+        <h3>Children's Theatre</h3>
+        <p>Developing original African children's productions — stories of hope, inspiration, and entertainment rooted in the continent's rich storytelling traditions. Professional staging, original music, child casts, and narratives that make African children see themselves as the hero.</p>
+        <span class="creative-status">In Development</span>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🪶</div>
+        <h3>Original Playwriting</h3>
+        <p>Writing for the stage — exploring the worlds of media, faith, girlhood, sport, and community. Stories drawn from two decades of living at the intersection of Africa, creativity, and human service. Theatre that remembers you twenty years later.</p>
+        <span class="creative-status">Coming Soon</span>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">⛪</div>
+        <h3>Pastoral & Youth Work</h3>
+        <p>Serving a girls' high school community as pastor. Walking with young women through faith, identity, and the noise of growing up. This work is not separate from the professional — it is the moral foundation beneath all of it.</p>
+        <span class="creative-status">Ongoing</span>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">⚽</div>
+        <h3>Women in Sport Advocacy</h3>
+        <p>Passionate about raising the next generation of women in sport — through programming, mentorship, storytelling, and the conviction that girls belong on every pitch, in every stadium, and on every podium.</p>
+        <span class="creative-status">Ongoing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-title">Let's build something <em>worthy</em></h2>
+    <p class="contact-sub">For consultancy enquiries, speaking invitations, collaborations, or just a conversation — reach out.</p>
+    <div class="contact-channels">
+      <div class="contact-channel">
+        <h4>Email</h4>
+        <a href="mailto:your@email.com">[your@email.com]</a>
+      </div>
+      <div class="contact-channel">
+        <h4>Phone / WhatsApp</h4>
+        <p>[+254 — ]</p>
+      </div>
+      <div class="contact-channel">
+        <h4>LinkedIn</h4>
+        <a href="#">[Your LinkedIn]</a>
+      </div>
+      <div class="contact-channel">
+        <h4>Based In</h4>
+        <p>Nairobi, Kenya</p>
+      </div>
+    </div>
+    <div class="contact-divider"></div>
+    <p class="contact-faith">
+      "Whatever your hand finds to do, do it with all your might." — Ecclesiastes 9:10
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 [Your Name]. All rights reserved.</p>
+  <span class="footer-brand">[Firebird Name] — Message. Image. Impact.</span>
+</footer>
+
+<script>
+  // Generate drifting embers in hero
+  const field = document.getElementById('embers');
+  for (let i = 0; i < 28; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    const left = Math.random() * 100;
+    const dur  = 5 + Math.random() * 7;
+    const delay = Math.random() * 8;
+    const drift = (Math.random() - 0.5) * 80;
+    const size  = 1.5 + Math.random() * 3;
+    e.style.cssText = `
+      left: ${left}%;
+      --dur: ${dur}s;
+      --delay: ${delay}s;
+      --drift: ${drift}px;
+      width: ${size}px;
+      height: ${size}px;
+      opacity: 0;
+    `;
+    field.appendChild(e);
+  }
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id
+            ? 'var(--gold)'
+            : 'rgba(232,184,122,0.55)';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
